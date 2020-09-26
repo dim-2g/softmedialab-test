@@ -1,0 +1,258 @@
+$violet: #5d6cad;
+$cubic02: all 0.2s cubic-bezier(0.3, 0, 0.2, 1);
+$cubic05: all 0.5s cubic-bezier(0.3, 0, 0.2, 1);
+
+.radio-custom{
+  margin: 0;
+  &__input{
+    display: none !important;
+  }
+  &__pseudo{
+    width: 16px;
+    height: 16px;
+    border: 1px solid #c7c7c7;
+    position: relative;
+    margin-right: 9px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+  &__label{
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+  }
+  &__input,
+  &__pseudo,
+  &__label{
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  &__input:checked + .radio-custom__pseudo::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    bottom: 3px;
+    left: 3px;
+    background: #303030;
+    border-radius: 50%;
+  }
+}
+
+.d-control{
+  &__list{
+    padding-left: 12px;
+    margin-bottom: 15px;
+  }
+  &__item{
+    display: flex;
+    align-items: center;
+    + .d-control__item{
+      margin-top: 9px;
+    }
+  }
+  &__header{
+    color: #a7a7a7;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+}
+
+.ndfl-choice{
+  margin-left: 37px;
+  margin-bottom: 26px;
+  &__input-box{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+  }
+  &__input{
+    border: 1px solid #dadada;
+    height: 30px;
+    line-height: 30px;
+    width: 162px;
+    border-radius: 15px;
+    padding: 0px 12px;
+    margin-right: 8px;
+
+    font-weight: 700;
+    font-size: 18px;
+    color: #000;
+    font-family: Ubuntu, sans-serif;
+  }
+}
+
+.d-toggle-control{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  &__label{
+    font-size: 12px;
+    font-weight: 700;
+    color: #a7a7a7;
+    transition: 0.2s all;
+  }
+  &--on{
+    .d-toggle-control__on{
+      color: #000;
+    }
+  }
+  &--off{
+    .d-toggle-control__off{
+      color: #000;
+    }
+  }
+  &__indicator{
+    width: 33px;
+    flex-shrink: 0;
+    background: #f1a43c;
+    height: 20px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s all;
+    &:before{
+      display: inline-block;
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #fff;
+      position: absolute;
+      left: 50%;
+      margin-left: -8px;
+      top: 2px;
+      transition: 0.2s all;
+      transform: translateX(6px);
+    }
+  }
+  &--off{
+    .d-toggle-control__indicator{
+      background-color: #e9e8e6;
+      &:before{
+        transform: translateX(-6px);
+      }
+    }
+  }
+}
+
+.d-control-panel{
+  display: inline-block;
+  background-color: #fbf4da;
+  padding: 6px 30px 6px 30px;
+  &__value{
+    font-weight: 700;
+  }
+}
+
+.d-tooltip{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #dadada;
+  position: relative;
+  vertical-align: bottom;
+  margin-left: 8px;
+  transition: $cubic02;
+  cursor: pointer;
+  &:before{
+    display: inline-block;
+    content: '';
+    width: 2px;
+    height: 2px;
+    background-color: #aaaaaa;
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    transition: $cubic02;
+  }
+  &:after{
+    display: inline-block;
+    content: '';
+    width: 2px;
+    height: 5px;
+    background-color: #aaaaaa;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    transition: $cubic02;
+  }
+  &:hover{
+    border-color: $violet;
+    z-index: 5;
+    &:before{
+      background-color: $violet;
+    }
+    &:after{
+      background-color: $violet;
+    }
+  }
+  &--open{
+    z-index: 4;
+    &:before{
+      width: 10px;
+      left: 4px;
+      top: 8px;
+      transform: rotate(45deg);
+    }
+    &:after{
+      height: 10px;
+      transform: rotate(45deg);
+      left: 8px;
+      top: 4px;
+    }
+  }
+  &__body{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 220px;
+    padding-top: 15px;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: $cubic05;
+    &:before{
+      display: inline-block;
+      content: '';
+      border: 13px solid transparent;
+      border-bottom: 0px solid $violet;
+      border-left: 12px solid $violet;
+      position: absolute;
+      top: 2px;
+      left: 0;
+    }
+  }
+  &__content{
+    padding: 16px 13px;
+    color: #fff;
+    background-color: $violet;
+    display: block;
+    font-size: 12px;
+    line-height: 165%;
+    letter-spacing: 0.5px;
+  }
+  &--open{
+    .d-tooltip{
+      &__body{
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  &:hover{
+    .d-tooltip{
+      z-index: 3;
+      &__body{
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
