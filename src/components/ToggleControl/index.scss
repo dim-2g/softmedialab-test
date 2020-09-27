@@ -1,0 +1,58 @@
+@import "../../css/constants";
+
+
+.d-toggle-control{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  &__label{
+    font-size: 12px;
+    font-weight: 700;
+    color: #a7a7a7;
+    transition: 0.2s all;
+  }
+  &--on{
+    .d-toggle-control__on{
+      color: #000;
+    }
+  }
+  &--off{
+    .d-toggle-control__off{
+      color: #000;
+    }
+  }
+  &__indicator{
+    width: 33px;
+    flex-shrink: 0;
+    background: #f1a43c;
+    height: 20px;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s all;
+    &:before{
+      display: inline-block;
+      content: '';
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #fff;
+      position: absolute;
+      left: 50%;
+      margin-left: -8px;
+      top: 2px;
+      transition: 0.2s all;
+      transform: translateX(6px);
+    }
+  }
+  &--off{
+    .d-toggle-control__indicator{
+      background-color: #e9e8e6;
+      &:before{
+        transform: translateX(-6px);
+      }
+    }
+  }
+}

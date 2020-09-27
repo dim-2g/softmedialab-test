@@ -1,0 +1,1 @@
+export const SET_INITIAL_WAGE = 'set/initial/wage';

@@ -1,0 +1,127 @@
+@import "../../css/constants";
+
+.d-tooltip{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #dadada;
+  position: relative;
+  margin-top: 3px;
+  margin-left: 8px;
+  transition: $cubic02;
+  cursor: pointer;
+  z-index: 1;
+  &:before{
+    display: inline-block;
+    content: '';
+    width: 2px;
+    height: 2px;
+    background-color: #aaaaaa;
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    transition: $cubic02;
+  }
+  &:after{
+    display: inline-block;
+    content: '';
+    width: 2px;
+    height: 5px;
+    background-color: #aaaaaa;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    transition: $cubic02;
+  }
+  &:hover{
+    border-color: $violet;
+    z-index: 5;
+    &:before{
+      background-color: $violet;
+    }
+    &:after{
+      background-color: $violet;
+    }
+  }
+  &--open{
+    z-index: 4;
+    &:before{
+      width: 10px;
+      left: 4px;
+      top: 8px;
+      transform: rotate(45deg);
+    }
+    &:after{
+      height: 10px;
+      transform: rotate(45deg);
+      left: 8px;
+      top: 4px;
+    }
+  }
+  &__body{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 220px;
+    padding-top: 15px;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: $cubic05;
+    &:before{
+      display: inline-block;
+      content: '';
+      border: 13px solid transparent;
+      border-bottom: 0px solid $violet;
+      border-left: 12px solid $violet;
+      position: absolute;
+      top: 2px;
+      left: 0;
+    }
+  }
+  &__content{
+    padding: 16px 13px;
+    color: #fff;
+    background-color: $violet;
+    display: block;
+    font-size: 12px;
+    line-height: 165%;
+    letter-spacing: 0.5px;
+  }
+  &--open{
+    .d-tooltip{
+      &__body{
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  &:hover{
+    .d-tooltip{
+      z-index: 3;
+      &__body{
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.d-tooltip-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.d-tooltip-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.d-tooltip-exit {
+  opacity: 1;
+}
+.d-tooltip-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}

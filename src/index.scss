@@ -1,3 +1,5 @@
+@import "~bootstrap/scss/bootstrap.scss";
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', 'Ubuntu', sans-serif;
@@ -8,12 +10,6 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.container{
-  max-width: 1040px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 *{

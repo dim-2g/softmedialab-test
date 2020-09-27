@@ -1,0 +1,11 @@
+.d-control-panel{
+  display: inline-block;
+  background-color: #fbf4da;
+  padding: 11px 30px 11px 30px;
+  &__value{
+    font-weight: 700;
+  }
+  p{
+    margin: 5px 0;
+  }
+}
