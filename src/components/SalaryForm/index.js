@@ -79,13 +79,14 @@ const SalaryForm = (props) => {
             <SalaryResult typeSalary={type} />
         </div>
     );
-}
+};
 
+const activeSalaryType = SALARY_TYPES.MONTH;
 const SalaryReduxForm = reduxForm({
     form: 'salary',
     initialValues: {
-        type: SALARY_TYPES.MONTH,
-        wage: parseWageToNumber(initialStateSalary[SALARY_TYPES.MONTH].wage),
+        type: activeSalaryType,
+        wage: parseWageToNumber(initialStateSalary[activeSalaryType].wage),
         withNdfl: true
     }
 })(SalaryForm);
