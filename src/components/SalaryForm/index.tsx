@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Field, getFormValues, reduxForm, change as changeForm} from "redux-form";
+import {Field, getFormValues, reduxForm, change as changeForm, formValueSelector} from "redux-form";
 import {useDispatch, useSelector} from "react-redux";
 import {SALARY_TYPES} from "../../constants/enums";
 import Tooltip from "../Tooltip";
@@ -8,19 +8,37 @@ import SalaryResult from "../SalaryResult";
 import {initialStateArray as initialStateSalary} from "../../redux/salariesReducer";
 import {setInitialWage} from "../../redux/actions";
 import {moneyFormat, parseWageToNumber} from "../../utils/functions";
+import {SalaryType, SalariesType} from '../../redux/salariesReducer';
 
-const SalaryForm = (props) => {
+export type OneSalary = {
+    form: {
+        salary: {
+            type: {
+                values: {
+                    type: string
+                }
+            }
+        }
+    }
+}
+
+const SalaryForm = () => {
     const dispatch = useDispatch();
-    const type = useSelector(state => getFormValues('salary')(state)).type;
-    const salaries = useSelector(state => state.salaries)
-    const currentSalary = salaries.find(item => item.type === type);
+    const selector = formValueSelector('salary')
+    const type = useSelector((state) => selector(state, 'type'));
+    const salaries = useSelector<SalariesType, Array<SalaryType>>(state => state.salaries)
+    const currentSalary : SalaryType = salaries.find(item => item.type === type);
 
-    const checkSalaryType = (type) => {
-        let wage = salaries.find(item => item.type === type).wage;
+    console.log(salaries);
+
+
+    const checkSalaryType = (type: string) => {
+        //let wage = salaries.find(item => item.type === type).wage;
+        let wage = 33;
         dispatch(changeForm('salary', 'wage', wage));
     };
 
-    const changeInitialWage = (wage) => {
+    const changeInitialWage = (wage: string) => {
         dispatch(setInitialWage(parseWageToNumber(wage), type));
     };
 
@@ -41,7 +59,7 @@ const SalaryForm = (props) => {
                                         className="radio-custom__input"
                                         checked={type == item.type}
                                         value={item.type}
-                                        onChange={(e) => checkSalaryType(e.target.value)}
+                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkSalaryType(e.target.value)}
                                         />
                                         <span className="radio-custom__pseudo"></span>
                                             <span className="radio-custom__label">
@@ -67,7 +85,7 @@ const SalaryForm = (props) => {
                                 component="input"
                                 type="text"
                                 className="ndfl-choice__input"
-                                onChange={(e) => changeInitialWage(e.target.value)}
+                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeInitialWage(e.target.value)}
                                 name="wage"
                                 format={moneyFormat}
                                 parse={parseWageToNumber}
@@ -79,10 +97,12 @@ const SalaryForm = (props) => {
                 <SalaryResult typeSalary={type} />
         </div>
     );
+
 };
 
 const activeSalaryType = SALARY_TYPES.MONTH;
-const initialWage = initialStateSalary.find(item => item.type === activeSalaryType).wage;
+//const initialWage = initialStateSalary.find(item => item.type === activeSalaryType).wage;
+const initialWage = 40000;
 const SalaryReduxForm = reduxForm({
     form: 'salary',
     initialValues: {

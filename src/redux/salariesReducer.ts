@@ -1,7 +1,22 @@
 import {SALARY_TYPES} from "../constants/enums";
 import {SET_INITIAL_WAGE} from './types';
 
-export const initialStateArray = [
+export type SalaryType = {
+    type: string;
+    label: string;
+    tooltip: {
+        text: string;
+        open: boolean;
+    };
+    wage: number | null;
+    measure: string;
+}
+
+export type SalariesType = {
+    salaries: SalaryType[]
+}
+
+export const initialStateArray: SalaryType[] = [
     {
         'type': SALARY_TYPES.MONTH,
         'label': 'Оклад за месяц',
@@ -44,9 +59,13 @@ export const initialStateArray = [
     },
 ];
 
-export const salariesReducer = (state = initialStateArray, action) => {
+type ACTIONTYPE =
+    | { type: typeof SET_INITIAL_WAGE; payload: {wage: number; type: string} };
+
+export const salariesReducer = (state = initialStateArray, action: ACTIONTYPE) => {
     switch (action.type) {
         case SET_INITIAL_WAGE:
+            /*
             const salary = state.find(item => item.type === action.payload.type);
             salary.wage = action.payload.wage;
             const newState = state.map(item => {
@@ -56,6 +75,8 @@ export const salariesReducer = (state = initialStateArray, action) => {
                 return item;
             });
             state = newState;
+
+             */
             break;
     }
     return state;
