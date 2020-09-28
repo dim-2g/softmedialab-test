@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import SalaryReduxForm from "./components/SalaryForm";
 
-import './App.scss';
-
 function App() {
   return (
     <div className="App">
