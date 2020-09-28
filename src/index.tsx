@@ -4,19 +4,21 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
-import {createStore, compose, applyMiddleware} from "redux";
+import {createStore, compose} from "redux";
 import {rootReducer} from "./redux/rootReducer";
 
-const store = createStore(rootReducer, compose(
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-));
+declare global {
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers());
 
 ReactDOM.render(
-  <React.StrictMode>
       <Provider store={store}>
           <App />
-      </Provider>
-  </React.StrictMode>,
+      </Provider>,
   document.getElementById('root')
 );
 
