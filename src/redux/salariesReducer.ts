@@ -16,46 +16,46 @@ export type SalariesType = {
     salaries: SalaryType[]
 }
 
-export const initialStateArray: SalaryType[] = [
+export const initialState: SalaryType[] = [
     {
-        'id': SALARY_TYPES.MONTH,
-        'label': 'Оклад за месяц',
-        'tooltip': {
-            'text': '',
-            'open': false
+        id: SALARY_TYPES.MONTH,
+        label: 'Оклад за месяц',
+        tooltip: {
+            text: '',
+            open: false
         },
-        'wage': 40000,
-        'measure': '',
+        wage: 40000,
+        measure: '',
     },
     {
-        'id': SALARY_TYPES.MROT,
-        'label': 'МРОТ',
-        'tooltip': {
-            'text': 'МРОТ - минимальный размер оплаты труда. Разный для разных регионов.',
-            'open': false
+        id: SALARY_TYPES.MROT,
+        label: 'МРОТ',
+        tooltip: {
+            text: 'МРОТ - минимальный размер оплаты труда. Разный для разных регионов.',
+            open: false
         },
-        'wage': null,
-        'measure': '',
+        wage: null,
+        measure: '',
     },
     {
-        'id': SALARY_TYPES.DAY,
-        'label': 'Оплата за день',
-        'tooltip': {
-            'text': '',
-            'open': false
+        id: SALARY_TYPES.DAY,
+        label: 'Оплата за день',
+        tooltip: {
+            text: '',
+            open: false
         },
-        'wage': 1500,
-        'measure': 'в день',
+        wage: 1500,
+        measure: 'в день',
     },
     {
-        'id': SALARY_TYPES.HOUR,
-        'label': 'Оплата за час',
-        'tooltip': {
-            'text': '',
-            'open': false
+        id: SALARY_TYPES.HOUR,
+        label: 'Оплата за час',
+        tooltip: {
+            text: '',
+            open: false
         },
-        'wage': 400,
-        'measure': 'в час',
+        wage: 400,
+        measure: 'в час',
     },
 ];
 
@@ -67,7 +67,7 @@ type SalaryActionType = {
     }
 };
 
-export const salariesReducer = (state = initialStateArray, action: SalaryActionType) => {
+export const salariesReducer = (state = initialState, action: SalaryActionType) => {
     switch (action.type) {
         case SET_INITIAL_WAGE:
             const salary = state.find(item => item.id === action.payload.id);

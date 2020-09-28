@@ -1,0 +1,66 @@
+@import "../../css/constants";
+
+.radio-custom{
+  margin: 0;
+  &__input{
+    display: none !important;
+  }
+  &__pseudo{
+    width: 16px;
+    height: 16px;
+    border: 1px solid #c7c7c7;
+    position: relative;
+    margin-right: 9px;
+    border-radius: 50%;
+    background-color: #fff;
+  }
+  &__label{
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+  }
+  &__input,
+  &__pseudo,
+  &__label{
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  &__input:checked + .radio-custom__pseudo::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    bottom: 3px;
+    left: 3px;
+    background: #303030;
+    border-radius: 50%;
+  }
+}
+
+.form-check-label{
+  font-weight: 700;
+  font-size: 16px;
+  color: #000;
+}
+
+.d-control{
+  &__list{
+    padding-left: 12px;
+    margin-bottom: 15px;
+  }
+  &__item{
+    display: flex;
+    align-items: center;
+    + .d-control__item{
+      margin-top: 3px;
+    }
+  }
+  &__header{
+    color: #a7a7a7;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+}

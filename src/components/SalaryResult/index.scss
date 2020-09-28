@@ -9,3 +9,21 @@
     margin: 5px 0;
   }
 }
+
+.d-control-panel-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.d-control-panel-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.d-control-panel-exit {
+  opacity: 1;
+}
+.d-control-panel-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}

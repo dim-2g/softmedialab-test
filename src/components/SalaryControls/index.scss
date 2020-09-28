@@ -1,0 +1,24 @@
+.ndfl-choice{
+  margin-left: 37px;
+  margin-bottom: 26px;
+  min-height: 96px;
+  &__input-box{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+  }
+  &__input{
+    border: 1px solid #dadada;
+    height: 30px;
+    line-height: 30px;
+    width: 162px;
+    border-radius: 15px;
+    padding: 0px 12px;
+    margin-right: 8px;
+
+    font-weight: 700;
+    font-size: 18px;
+    color: #000;
+    font-family: Ubuntu, sans-serif;
+  }
+}
