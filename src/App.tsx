@@ -1,9 +1,5 @@
 import React, {useState} from 'react';
-import classNames from 'classnames';
-import { CSSTransition } from 'react-transition-group';
-import {Field, reduxForm} from "redux-form";
 import SalaryReduxForm from "./components/SalaryForm";
-import {SALARY_TYPES} from './constants/enums';
 
 import './App.scss';
 

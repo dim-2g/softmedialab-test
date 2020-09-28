@@ -1,11 +1,11 @@
 import React, {useState} from "react";
-import {Field, getFormValues, reduxForm, change as changeForm, formValueSelector} from "redux-form";
+import {Field, reduxForm, change as changeForm, formValueSelector} from "redux-form";
 import {useDispatch, useSelector} from "react-redux";
+import {initialStateArray as initialStateSalary} from "../../redux/salariesReducer";
 import {SALARY_TYPES} from "../../constants/enums";
 import Tooltip from "../Tooltip";
 import ToggleControl from "../ToggleControl";
 import SalaryResult from "../SalaryResult";
-import {initialStateArray as initialStateSalary} from "../../redux/salariesReducer";
 import {setInitialWage} from "../../redux/actions";
 import {moneyFormat, parseWageToNumber} from "../../utils/functions";
 import {SalaryType, SalariesType} from '../../redux/salariesReducer';
