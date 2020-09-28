@@ -32,27 +32,27 @@ const SalaryForm = (props) => {
                             const salary = item;
                             return (
                                 <div className="d-control__item" key={item.type}>
-                                <label className="radio-custom" htmlFor={`salary-${item.type}`} >
-                        <Field
-                            component="input"
-                            id={`salary-${item.type}`}
-                            name="type"
-                            type="radio"
-                            className="radio-custom__input"
-                            checked={type == item.type}
-                            value={item.type}
-                            onChange={(e) => checkSalaryType(e.target.value)}
-                            />
-                            <span className="radio-custom__pseudo"></span>
-                                <span className="radio-custom__label">
-                                {salary.label}
-                                </span>
-                                </label>
-                                <Tooltip input={salary.tooltip}/>
+                                    <label className="radio-custom" htmlFor={`salary-${item.type}`} >
+                                    <Field
+                                        component="input"
+                                        id={`salary-${item.type}`}
+                                        name="type"
+                                        type="radio"
+                                        className="radio-custom__input"
+                                        checked={type == item.type}
+                                        value={item.type}
+                                        onChange={(e) => checkSalaryType(e.target.value)}
+                                        />
+                                        <span className="radio-custom__pseudo"></span>
+                                            <span className="radio-custom__label">
+                                            {salary.label}
+                                            </span>
+                                            </label>
+                                            <Tooltip input={salary.tooltip}/>
+                                        </div>
+                                    );
+                                })}
                             </div>
-                        );
-                    })}
-                </div>
 
                 {currentSalary.wage !== null && (
                     <div className="ndfl-choice">
@@ -76,7 +76,7 @@ const SalaryForm = (props) => {
                         </div>
                     </div>
                 )}
-            <SalaryResult typeSalary={type} />
+                <SalaryResult typeSalary={type} />
         </div>
     );
 };
