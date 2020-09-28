@@ -2,9 +2,21 @@ import React from "react";
 import classNames from "classnames";
 import './index.scss';
 
-const ToggleControl = (props) => {
+interface IToggleControl {
+    labelOff: string;
+    labelOn: string;
+    input: {
+        value: boolean;
+        onChange: (value: boolean) => void
+    }
+}
+
+const ToggleControl: React.FC<IToggleControl> = (props) => {
     const {labelOff, labelOn, input: {value, onChange}} = props;
-    const toggleClass = classNames({'d-toggle-control--on': value, 'd-toggle-control--off': !value});
+    const toggleClass = classNames({
+        'd-toggle-control--on': value,
+        'd-toggle-control--off': !value
+    });
 
     return (
         <div className={`d-toggle-control ${toggleClass}`}>

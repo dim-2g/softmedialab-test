@@ -21,7 +21,7 @@ const SalaryForm = () => {
     const checkSalaryType = (id: string) => {
         let curSalary = salaries.find(item => item.id === id);
         if (curSalary) {
-            let wage = curSalary.wage;
+            let wage = String(curSalary.wage);
             dispatch(changeForm('salary', 'wage', wage));
         }
     };
@@ -33,56 +33,60 @@ const SalaryForm = () => {
     return (
         <div className="d-control">
             <div className="d-control__header">Сумма</div>
-                <div className="d-control__list">
-                    {salaries.map(item => {
-                        const salary = item;
-                        return (
-                            <div className="d-control__item" key={item.id}>
-                                <label className="radio-custom" htmlFor={`salary-${item.id}`} >
-                                    <Field
-                                        component="input"
-                                        id={`salary-${item.id}`}
-                                        name="id"
-                                        type="radio"
-                                        className="radio-custom__input"
-                                        checked={id == item.id}
-                                        value={item.id}
-                                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkSalaryType(e.target.value)}
-                                    />
-                                    <span className="radio-custom__pseudo"></span>
-                                    <span className="radio-custom__label">
-                                        {salary.label}
-                                    </span>
-                                </label>
-                                <Tooltip input={salary.tooltip}/>
-                            </div>
-                            );
-                    })}
+                <div className="row">
+                    <div className="col-md-5 d-control__list">
+                        {salaries.map(item => {
+                            const salary = item;
+                            return (
+                                <div className="d-control__item" key={item.id}>
+                                    <label className="radio-custom" htmlFor={`salary-${item.id}`} >
+                                        <Field
+                                            component="input"
+                                            id={`salary-${item.id}`}
+                                            name="id"
+                                            type="radio"
+                                            className="radio-custom__input"
+                                            checked={id == item.id}
+                                            value={item.id}
+                                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkSalaryType(e.target.value)}
+                                        />
+                                        <span className="radio-custom__pseudo"></span>
+                                        <span className="radio-custom__label">
+                                            {salary.label}
+                                        </span>
+                                    </label>
+                                    <Tooltip input={salary.tooltip}/>
+                                </div>
+                                );
+                        })}
+                    </div>
                 </div>
 
                 {currentSalary.wage !== null && (
-                    <div className="ndfl-choice">
-                        <Field
-                            component={ToggleControl}
-                            name="withNdfl"
-                            labelOff={`Указать с НДФЛ`}
-                            labelOn={`Без НДФЛ`}
-                        />
-                        <div className="ndfl-choice__input-box">
+                    <div className="row">
+                        <div className="col-md-5 ndfl-choice">
                             <Field
-                                component="input"
-                                type="text"
-                                className="ndfl-choice__input"
-                                onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeInitialWage(e.target.value)}
-                                name="wage"
-                                format={moneyFormat}
-                                parse={parseWageToNumber}
+                                component={ToggleControl}
+                                name="withNdfl"
+                                labelOff={`Указать с НДФЛ`}
+                                labelOn={`Без НДФЛ`}
                             />
-                            &#x20bd; {currentSalary.measure}
+                            <div className="ndfl-choice__input-box">
+                                <Field
+                                    component="input"
+                                    type="text"
+                                    className="ndfl-choice__input"
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => changeInitialWage(e.target.value)}
+                                    name="wage"
+                                    format={moneyFormat}
+                                    parse={parseWageToNumber}
+                                />
+                                &#x20bd; {currentSalary.measure}
+                            </div>
                         </div>
                     </div>
                 )}
-                <SalaryResult typeSalary={id} />
+                <SalaryResult salaryId={id} />
         </div>
     );
 
@@ -90,13 +94,13 @@ const SalaryForm = () => {
 
 const activeSalaryId = SALARY_TYPES.MONTH;
 let curSalary = initialStateSalary.find(item => item.id === activeSalaryId);
-const initialWage = curSalary ? curSalary.wage : 0;
+const initialWage = curSalary ? curSalary.wage : '';
 
 const SalaryReduxForm = reduxForm({
     form: 'salary',
     initialValues: {
         id: activeSalaryId,
-        wage: parseWageToNumber(initialWage),
+        wage: parseWageToNumber(String(initialWage)),
         withNdfl: true
     }
 })(SalaryForm);
