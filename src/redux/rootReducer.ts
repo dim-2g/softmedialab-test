@@ -6,3 +6,5 @@ export const rootReducer = combineReducers({
     salaries: salariesReducer,
     form: formReducer
 });
+
+export type AppState = ReturnType<typeof rootReducer>;

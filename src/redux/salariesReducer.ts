@@ -2,7 +2,7 @@ import {SALARY_TYPES} from "../constants/enums";
 import {SET_INITIAL_WAGE} from './types';
 
 export type SalaryType = {
-    type: string;
+    id: string;
     label: string;
     tooltip: {
         text: string;
@@ -18,7 +18,7 @@ export type SalariesType = {
 
 export const initialStateArray: SalaryType[] = [
     {
-        'type': SALARY_TYPES.MONTH,
+        'id': SALARY_TYPES.MONTH,
         'label': 'Оклад за месяц',
         'tooltip': {
             'text': '',
@@ -28,7 +28,7 @@ export const initialStateArray: SalaryType[] = [
         'measure': '',
     },
     {
-        'type': SALARY_TYPES.MROT,
+        'id': SALARY_TYPES.MROT,
         'label': 'МРОТ',
         'tooltip': {
             'text': 'МРОТ - минимальный размер оплаты труда. Разный для разных регионов.',
@@ -38,7 +38,7 @@ export const initialStateArray: SalaryType[] = [
         'measure': '',
     },
     {
-        'type': SALARY_TYPES.DAY,
+        'id': SALARY_TYPES.DAY,
         'label': 'Оплата за день',
         'tooltip': {
             'text': '',
@@ -48,7 +48,7 @@ export const initialStateArray: SalaryType[] = [
         'measure': 'в день',
     },
     {
-        'type': SALARY_TYPES.HOUR,
+        'id': SALARY_TYPES.HOUR,
         'label': 'Оплата за час',
         'tooltip': {
             'text': '',
@@ -59,24 +59,28 @@ export const initialStateArray: SalaryType[] = [
     },
 ];
 
-type ACTIONTYPE =
-    | { type: typeof SET_INITIAL_WAGE; payload: {wage: number; type: string} };
+type SalaryActionType = {
+    type: typeof SET_INITIAL_WAGE;
+    payload: {
+        wage: number;
+        id: string
+    }
+};
 
-export const salariesReducer = (state = initialStateArray, action: ACTIONTYPE) => {
+export const salariesReducer = (state = initialStateArray, action: SalaryActionType) => {
     switch (action.type) {
         case SET_INITIAL_WAGE:
-            /*
-            const salary = state.find(item => item.type === action.payload.type);
-            salary.wage = action.payload.wage;
-            const newState = state.map(item => {
-                if (item.type == action.payload.type) {
-                    return salary;
-                }
-                return item;
-            });
-            state = newState;
-
-             */
+            const salary = state.find(item => item.id === action.payload.id);
+            if (salary) {
+                salary.wage = action.payload.wage;
+                const newState = state.map(item => {
+                    if (item.id == action.payload.id) {
+                        return salary;
+                    }
+                    return item;
+                });
+                state = newState;
+            }
             break;
     }
     return state;
