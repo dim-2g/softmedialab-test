@@ -74,7 +74,7 @@ export const salariesReducer = (state = initialState, action: SalaryActionType) 
             if (salary) {
                 salary.wage = action.payload.wage;
                 const newState = state.map(item => {
-                    if (item.id == action.payload.id) {
+                    if (item.id === action.payload.id) {
                         return salary;
                     }
                     return item;

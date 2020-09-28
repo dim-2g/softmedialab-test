@@ -36,7 +36,7 @@ const SalaryList: React.FC<ISalaryList> = (props) => {
                                     name="id"
                                     type="radio"
                                     className="radio-custom__input"
-                                    checked={currentId == item.id}
+                                    checked={currentId === item.id}
                                     value={item.id}
                                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => checkSalaryType(e.target.value)}
                                 />
