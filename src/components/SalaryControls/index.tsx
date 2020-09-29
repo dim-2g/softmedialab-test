@@ -14,10 +14,6 @@ interface ISalaryControls {
 const SalaryControls: React.FC<ISalaryControls> = ({currentSalary, currentId}) => {
     const dispatch = useDispatch();
 
-    if (!currentSalary.wage) return (
-        <div className="row"><div className="col-md-5 ndfl-choice"></div></div>
-    );
-
     const changeInitialWage = (wage: string) => {
         dispatch(setInitialWage(parseWageToNumber(wage), currentId));
     };
@@ -31,6 +27,7 @@ const SalaryControls: React.FC<ISalaryControls> = ({currentSalary, currentId}) =
                     labelOff={`Указать с НДФЛ`}
                     labelOn={`Без НДФЛ`}
                 />
+                {currentSalary.wage !== null && (
                 <div className="ndfl-choice__input-box">
                     <Field
                         component="input"
@@ -43,6 +40,7 @@ const SalaryControls: React.FC<ISalaryControls> = ({currentSalary, currentId}) =
                     />
                     &#x20bd; {currentSalary.measure}
                 </div>
+                )}
             </div>
         </div>
     );
